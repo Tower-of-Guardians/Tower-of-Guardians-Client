@@ -285,7 +285,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &135666841
 MonoBehaviour:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
+  m_HorizontalFit: 0
   m_VerticalFit: 2
 --- !u!114 &135666844
 MonoBehaviour:
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_canvas: {fileID: 944360013}
   m_canvas_group: {fileID: 135666846}
   m_tooltip_label: {fileID: 301762456}
-  m_is_translation_active: 1
+  m_is_translation_active: 0
   m_fade_time: 0.5
 --- !u!225 &135666846
 CanvasGroup:
@@ -697,8 +697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
+  m_sharedMaterial: {fileID: -4652781241862084518, guid: 7d1e69fa71161ad4cb3445b7dc222166, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -722,8 +722,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2409,10 +2409,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tooltip_data:
     Description: "\uBC84\uB9B0 \uCE74\uB4DC \uB354\uBBF8\n\n\uBF51\uC744 \uCE74\uB4DC
-      \uB354\uBBF8\uAC00 \uBE44\uC5B4\uC788\uC744 \uACBD\uC6B0\n\uBC84\uB9B0 \uCE74\uB4DC
-      \uB354\uBBF8\uB97C \uBF51\uC744 \uCE74\uB4DC \uB354\uBBF8\uC5D0\n\uC11E\uC5B4
+      \uB354\uBBF8\uAC00 \uBE44\uC5B4\uC788\uC744 \uB54C \uBC84\uB9B0 \uCE74\uB4DC
+      \uB354\uBBF8\uB97C \uBF51\uC744 \uCE74\uB4DC \uB354\uBBF8\uC5D0 \uC11E\uC5B4
       \uB123\uC2B5\uB2C8\uB2E4."
-    Position: {x: 540, y: -420, z: 0}
+    Position: {x: 630, y: -450, z: 0}
 --- !u!1 &1152128080
 GameObject:
   m_ObjectHideFlags: 0
