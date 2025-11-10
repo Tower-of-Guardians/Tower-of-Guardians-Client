@@ -9,11 +9,17 @@ public class TooltipUIInjector : MonoBehaviour, IInjector
     [Header("캔버스")]
     [SerializeField] private Canvas m_canvas;
 
-    private IDescriptable[] m_descriptables;
+    [Header("플레이어")]
+    [SerializeField] private PlayerDescriptor m_player_descriptor;
+
+    [Header("몬스터")]
+    [SerializeField] private MonsterDescriptor[] m_monster_descriptors;
+
+    private IDescriptableUI[] m_descriptables;
 
     private void Awake()
     {
-        m_descriptables = m_canvas.GetComponentsInChildren<IDescriptable>();
+        m_descriptables = m_canvas.GetComponentsInChildren<IDescriptableUI>();
     }
 
     public void Inject()
@@ -36,5 +42,16 @@ public class TooltipUIInjector : MonoBehaviour, IInjector
 
         foreach(var descriptable in m_descriptables)
             descriptable.Inject(tooltip_presenter);
+
+        TempInject(tooltip_presenter);
+    }
+
+    private void TempInject(TooltipPresenter tooltip_presenter)
+    {
+        m_player_descriptor.Inject(tooltip_presenter);
+        foreach(var descriptor in m_monster_descriptors)
+        {
+            descriptor.Inject(tooltip_presenter);
+        }
     }
 }
