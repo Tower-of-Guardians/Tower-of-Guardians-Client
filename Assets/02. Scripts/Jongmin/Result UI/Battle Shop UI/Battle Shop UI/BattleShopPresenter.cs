@@ -9,8 +9,15 @@ public class BattleShopPresenter
         m_view.Inject(this);
     }
 
+    public void InstantiateSlot()
+    {
+        var slot_view = m_view.InstantiateSlotView();
+        var slot_presenter = new BattleShopSlotPresenter(slot_view);
+    }
+
     public void OpenUI()
     {
+        // TODO: 레벨에 따른 확률 정보 로드
         m_view.OpenUI();
     }
 

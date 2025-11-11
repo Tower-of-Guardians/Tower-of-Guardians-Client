@@ -15,6 +15,11 @@ public class BattleShopView : MonoBehaviour, IBattleShopView
     [Header("새로고침 버튼")]
     [SerializeField] private Button m_refresh_button;
 
+    [Space(30f)]
+    [Header("에디터 테스트 컴포넌트")]
+    [Header("전투 상점 슬롯 프리펩")]
+    [SerializeField] private GameObject m_slot_prefab;
+
     private Animator m_animator;
     private BattleShopPresenter m_presenter;
 
@@ -22,12 +27,21 @@ public class BattleShopView : MonoBehaviour, IBattleShopView
     {
         m_animator = GetComponent<Animator>();
 
-        m_refresh_button.onClick.AddListener(() => { m_animator.SetTrigger("Refresh");} );
+        m_refresh_button.onClick.AddListener(() => { m_refresh_button.interactable = false;
+                                                     m_animator.SetBool("Open", false);
+                                                     m_animator.SetTrigger("Refresh");} );
     }
 
     public void Inject(BattleShopPresenter presenter)
     {
         m_presenter = presenter;
+    }
+
+    public IBattleShopSlotView InstantiateSlotView()
+    {
+        var slot_obj = Instantiate(m_slot_prefab, m_slot_root);
+
+        return slot_obj.GetComponent<IBattleShopSlotView>();
     }
 
     public void OpenUI()
@@ -38,6 +52,7 @@ public class BattleShopView : MonoBehaviour, IBattleShopView
     public void CloseUI()
     {
         ToggleUI(false);
+        m_animator.SetTrigger("Close");
     }
 
     private void ToggleUI(bool active)
@@ -48,16 +63,15 @@ public class BattleShopView : MonoBehaviour, IBattleShopView
     public void CallbackToInstantiateCard()
     {
         // TODO: Object Pool을 통한 카드 생성
-#if UNITY_EDITOR
-        Debug.Log("카드가 생성되었습니다.");
-#endif
+        
+        m_presenter.InstantiateSlot();
     }
 
     public void CallbackToDestroyCard()
     {
         // TODO: Object Pool을 통한 카드 제거
-#if UNITY_EDITOR
-        Debug.Log("카드가 제거되었습니다.");
-#endif
+
+        for (int i = m_slot_root.childCount - 1; i >= 0; i--)
+            Destroy(m_slot_root.GetChild(i).gameObject);
     }
 }

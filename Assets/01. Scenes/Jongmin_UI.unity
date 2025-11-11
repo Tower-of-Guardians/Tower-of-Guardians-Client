@@ -6346,6 +6346,7 @@ MonoBehaviour:
   m_slot_root: {fileID: 1201118794}
   m_card_rate_label: {fileID: 1597277856}
   m_refresh_button: {fileID: 923031724}
+  m_slot_prefab: {fileID: 3650339991300456971, guid: 11a595909b4c43d4a9eac64749d69649, type: 3}
 --- !u!1 &1928632933
 GameObject:
   m_ObjectHideFlags: 0
