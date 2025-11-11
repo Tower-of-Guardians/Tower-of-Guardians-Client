@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StaticDescriptableUI : MonoBehaviour, IDescriptable
+public class StaticDescriptableUI : MonoBehaviour, IDescriptableUI
 {
     [Header("툴팁 관련 컴포넌트")]
     [Header("툴팁 데이터")]
