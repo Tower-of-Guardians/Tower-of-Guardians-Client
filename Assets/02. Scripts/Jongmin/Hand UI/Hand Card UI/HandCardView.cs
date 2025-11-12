@@ -1,0 +1,28 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class HandCardView : MonoBehaviour, IHandCardView
+{
+    [Header("UI 관련 컴포넌트")]
+    [Header("카드 테두리 이미지")]
+    [SerializeField] private Image m_outline_image;
+
+    [Header("카드 이미지")]
+    [SerializeField] private Image m_card_image;
+
+    [Header("카드 이름 텍스트")]
+    [SerializeField] private TMP_Text m_name_label;
+
+    [Header("카드 설명 텍스트")]
+    [SerializeField] private TMP_Text m_description_label;
+
+    public void InitUI(CardData card_data)
+    {
+        // TODO: 카드 테두리 이미지 설정
+        // TODO: 카드 초상화 이미지 설정
+
+        m_name_label.text = card_data.Name;
+        m_description_label.text = card_data.Description;
+    }
+}
