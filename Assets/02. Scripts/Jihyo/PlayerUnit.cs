@@ -23,7 +23,9 @@ public class PlayerUnit : MonoBehaviour, IDamageable
     [Header("Sprite")]
     [SerializeField] private Transform spriteTransform;
     [SerializeField] private float singleTargetAttackOffset = 1.0f;
-    [SerializeField] private float returnDelay = 0.1f;
+    [SerializeField] private float attackMoveDuration = 0.2f;
+    [SerializeField] private float attackMotionDuration = 0.3f;
+    [SerializeField] private float returnMoveDuration = 0.2f;
 
     private Vector3 initialSpriteLocalPosition;
     private bool hasCachedSpriteOrigin;
@@ -90,9 +92,10 @@ public class PlayerUnit : MonoBehaviour, IDamageable
                 attackPosition.x = initialSpriteLocalPosition.x - Mathf.Abs(singleTargetAttackOffset);
             }
 
-            spriteTransform.localPosition = attackPosition;
+            yield return StartCoroutine(MoveSpriteToPosition(attackPosition, attackMoveDuration));
         }
 
+        // 공격 실행
         if (targets != null)
         {
             foreach (IDamageable target in targets)
@@ -104,15 +107,42 @@ public class PlayerUnit : MonoBehaviour, IDamageable
             }
         }
 
-        if (returnDelay > 0f)
+        // 공격 모션 대기
+        if (attackMotionDuration > 0f)
         {
-            yield return new WaitForSeconds(returnDelay);
+            yield return new WaitForSeconds(attackMotionDuration);
         }
 
+        // 부드럽게 원래 위치로 복귀
         if (spriteTransform != null)
         {
-            spriteTransform.localPosition = initialSpriteLocalPosition;
+            yield return StartCoroutine(MoveSpriteToPosition(initialSpriteLocalPosition, returnMoveDuration));
         }
+    }
+
+    private IEnumerator MoveSpriteToPosition(Vector3 targetPosition, float duration)
+    {
+        if (spriteTransform == null || duration <= 0f)
+        {
+            if (spriteTransform != null)
+            {
+                spriteTransform.localPosition = targetPosition;
+            }
+            yield break;
+        }
+
+        Vector3 startPosition = spriteTransform.localPosition;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            spriteTransform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        spriteTransform.localPosition = targetPosition;
     }
 
     public void SetDefense(bool active)
