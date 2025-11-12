@@ -172,6 +172,9 @@ public class BattleManager : MonoBehaviour
 
         yield return StartCoroutine(player.PerformAttack(playerTargets, playerAttackHitsAll, attackAnchorPosition));
 
+        // 몬스터 공격 대기
+        yield return new WaitForSeconds(0.5f);
+
         foreach (MonsterUnit monster in primaryMonsters)
         {
             if (monster != null)
